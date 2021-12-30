@@ -28,9 +28,9 @@ let target; // Target position
 let obstacles = []; //an array list to keep track of all the obstacles!
 
 function setup() {
-  createCanvas(1280, 720);
+  createCanvas(1900, 950);
   // The number of cycles we will allow a generation to live
-  lifetime = 800;
+  lifetime = 1400;
 
   // Initialize variables
   lifecycle = 0;

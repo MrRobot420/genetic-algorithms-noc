@@ -25,7 +25,7 @@ class Target {
     }
   
     contains(spot) {
-      if (spot.x > this.position.x && spot.x < this.position.x + this.w && spot.y > this.position.y && spot.y < this.position.y + this.h) {
+      if (spot.x > this.position.x - this.w / 2 && spot.x < this.position.x + this.w / 2 && spot.y > this.position.y - this.w / 2 && spot.y < this.position.y + this.w / 2) {
         return true;
       } else {
         return false;
