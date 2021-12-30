@@ -53,6 +53,10 @@ class Population {
       })
       return livingRockets.length;
     }
+
+    getInitialCount() {
+      return this.population.length;
+    }
   
     // Generate a mating pool
     selection() {
