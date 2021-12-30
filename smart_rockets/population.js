@@ -45,6 +45,14 @@ class Population {
         this.population[i].calcFitness();
       }
     }
+
+    getLivingCount() {
+      let livingRockets = this.population;
+      livingRockets = livingRockets.filter((rocket) => {
+        return rocket.hitObstacle === false;
+      })
+      return livingRockets.length;
+    }
   
     // Generate a mating pool
     selection() {

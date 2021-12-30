@@ -36,7 +36,7 @@ function setup() {
   lifecycle = 0;
   recordtime = lifetime;
 
-  target = new Obstacle(width / 2 - 12, 24, 24, 24, 120, 0, 0);
+  target = new Target(width / 2, 78, 78, 200, 230, 200);
 
   // Create a population with a mutation rate, and population max
   let mutationRate = 0.01;
@@ -47,8 +47,9 @@ function setup() {
 
   // Fat one
   obstacles.push(new Obstacle(width / 2 - 50, height / 3, 100, 300, 0, 0, 0));
-  // Middle one
-  obstacles.push(new Obstacle(width / 2 + 100, height / 2, 200, 10, 0, 0, 0));
+  // Middle ones
+  obstacles.push(new Obstacle(width / 4 + 100, height / 2, 200, 10, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 2 + 50, height / 2, 200, 10, 0, 0, 0));
 
   // Top ones
   obstacles.push(new Obstacle(width / 4 - 100, height / 3, 200, 10, 0, 0, 0));
@@ -57,7 +58,6 @@ function setup() {
   obstacles.push(new Obstacle(width / 4 + 200, height / 3, 200, 10, 0, 0, 0));
   
   // Bottom ones
-  obstacles.push(new Obstacle(width / 4 + 100, height / 2, 200, 10, 0, 0, 0));
   obstacles.push(new Obstacle(width / 4 - 100, height / 1.5, 200, 10, 0, 0, 0));
   obstacles.push(new Obstacle(width / 4 + 600, height / 1.5, 200, 10, 0, 0, 0));
 }
@@ -95,6 +95,7 @@ function draw() {
   text("Generation #: " + population.getGenerations(), 10, 18);
   text("Cycles left: " + (lifetime - lifecycle), 10, 36);
   text("Record cycles: " + recordtime, 10, 54);
+  text("Population: " + population.getLivingCount(), 10, 72);
 
 
 }
