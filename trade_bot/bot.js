@@ -7,7 +7,7 @@
 
 
 class Bot {
-    constructor(pos, dna) {
+    constructor(pos, dna, startCapital) {
       // All of our physics stuff
       this.position = pos.copy();
       this.dna = dna;
@@ -15,7 +15,7 @@ class Bot {
       this.fitness = 0;
       this.geneCounter = 0;
       this.recordAmount = 100; // Some low number that will be beat instantly
-      this.startCapital = 2000;
+      this.startCapital = startCapital;
       this.currentCapital = this.startCapital;
       this.exceededStartCapital = false;
       this.broke = false;
@@ -70,7 +70,6 @@ class Bot {
   
     display() {
       text(`Captial: ${this.currentCapital} €, Last Action: ${this.currentCapital}`, this.position.x, this.position.y);
-      pop();
     }
   
     getFitness() {

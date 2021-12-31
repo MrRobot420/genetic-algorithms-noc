@@ -9,7 +9,7 @@
 
 // Initialize the population
 class Population {
-    constructor(m, num) {
+    constructor(m, num, startCapital) {
       this.mutationRate = m; // Mutation rate
       this.population = new Array(num); // Array to hold the current population
       this.matingPool = []; // ArrayList which we will use for our "mating pool"
@@ -17,7 +17,7 @@ class Population {
       //make a new set of creatures
       for (let i = 0; i < this.population.length; i++) {
         let position = createVector(width / 2 + 10, height + 20 + (i * 18));
-        this.population[i] = new Bot(position, new DNA());
+        this.population[i] = new Bot(position, new DNA(), startCapital);
       }
     }
   
@@ -90,6 +90,8 @@ class Population {
         let mom = this.matingPool[m];
         let dad = this.matingPool[d];
         // Get their genes
+        console.log(this.matingPool.length);
+        console.log(mom);
         let momgenes = mom.getDNA();
         let dadgenes = dad.getDNA();
         // Mate their genes
