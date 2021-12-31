@@ -48,25 +48,28 @@ function setup() {
   // Create the obstacle course
   obstacles = [];
 
-  // Fat one
-  obstacles.push(new Obstacle(width / 2 - 50, height / 3, 100, 300, 0, 0, 0));
-
+  // Fat one left
   obstacles.push(new Obstacle(width / 3 - 50, height / 3, 100, 300, 0, 0, 0));
-  
-  // Top ones
-  obstacles.push(new Obstacle(width / 4 - 100, height / 3, 100, 20, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 4 + 10, height / 3, 100, 20, 0, 0, 0));
   obstacles.push(new Obstacle(width / 4 + 200, height / 3, 100, 20, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 4 + 350, height / 3, 100, 20, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 4 + 650, height / 3, 200, 20, 0, 0, 0));
-  // Middle ones
-  obstacles.push(new Obstacle(width / 4 + 150, height / 2, 150, 20, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 2 + 50, height / 2, 200, 20, 0, 0, 0));
+  // Middle one
+  obstacles.push(new Obstacle(width / 4 + 50, height / 2, 200, 20, 0, 0, 0));
+  // Bottom one
+  obstacles.push(new Obstacle(width / 4 + 50, height / 1.55, 200, 20, 0, 0, 0));
   
-  // Bottom ones
+
+  // Fat one right
+  obstacles.push(new Obstacle(width / 2 - 50, height / 3, 100, 300, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 4 + 350, height / 3, 100, 20, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 4 + 500, height / 3, 100, 20, 0, 0, 0));
+  // Middle one
+  obstacles.push(new Obstacle(width / 2 - 100, height / 2, 200, 20, 0, 0, 0));
+  // Bottom one
+  obstacles.push(new Obstacle(width / 4 + 380, height / 1.55, 200, 20, 0, 0, 0));
 }
 
 function draw() {
-  background(127);
+  background(27, 30, 65);
 
   // Draw the start and target positions
   target.display();
@@ -100,8 +103,9 @@ function draw() {
   }
 
   // Display some info
-  fill(0);
-  noStroke();
+  fill(255);
+  textSize(18);
+  textStyle(BOLD);
   text("Generation #: " + population.getGenerations(), 10, 18);
   text("Cycles left: " + (lifetime - lifecycle), 10, 36);
   text("Rockets left: " + population.getLivingCount(), 10, 54);

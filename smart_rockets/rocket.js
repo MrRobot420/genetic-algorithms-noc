@@ -117,7 +117,7 @@ class Rocket {
       rect(this.r / 2, this.r * 3, this.r / 2, this.r);
   
       // Rocket body
-      fill(40, 60, 80);
+      fill(200, 160, 80);
       beginShape(TRIANGLES);
       vertex(0, -this.r * 2);
       vertex(-this.r, this.r * 2);
