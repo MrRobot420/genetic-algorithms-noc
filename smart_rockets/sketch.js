@@ -30,7 +30,7 @@ let obstacles = []; //an array list to keep track of all the obstacles!
 function setup() {
   createCanvas(1900, 950);
   // The number of cycles we will allow a generation to live
-  lifetime = 1200;
+  lifetime = 1000;
 
   // Initialize variables
   lifecycle = 0;
@@ -50,19 +50,19 @@ function setup() {
 
   // Fat one
   obstacles.push(new Obstacle(width / 2 - 50, height / 3, 100, 300, 0, 0, 0));
-  // Middle ones
-  obstacles.push(new Obstacle(width / 4 + 100, height / 2, 200, 10, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 2 + 50, height / 2, 200, 10, 0, 0, 0));
 
+  obstacles.push(new Obstacle(width / 3 - 50, height / 3, 100, 300, 0, 0, 0));
+  
   // Top ones
-  obstacles.push(new Obstacle(width / 4 - 100, height / 3, 200, 10, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 4 + 200, height / 3, 200, 10, 0, 0, 0));
-  // obstacles.push(new Obstacle(width / 4 + 400, height / 3, 200, 10, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 4 + 600, height / 3, 200, 10, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 4 - 100, height / 3, 100, 20, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 4 + 200, height / 3, 100, 20, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 4 + 350, height / 3, 100, 20, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 4 + 650, height / 3, 200, 20, 0, 0, 0));
+  // Middle ones
+  obstacles.push(new Obstacle(width / 4 + 150, height / 2, 150, 20, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 2 + 50, height / 2, 200, 20, 0, 0, 0));
   
   // Bottom ones
-  obstacles.push(new Obstacle(width / 4 - 100, height / 1.5, 200, 10, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 4 + 600, height / 1.5, 200, 10, 0, 0, 0));
 }
 
 function draw() {

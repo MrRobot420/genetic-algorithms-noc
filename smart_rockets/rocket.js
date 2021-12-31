@@ -21,6 +21,7 @@ class Rocket {
       this.geneCounter = 0;
       this.hitObstacle = false; // Am I stuck on an obstacle?
       this.hitTarget = false; // Did I reach the target
+      this.outOfBounds = false; // Did I hit the edge?
     }
   
     // FITNESS FUNCTION
@@ -44,7 +45,7 @@ class Rocket {
     // Run in relation to all the obstacles
     // If I'm stuck, don't bother updating or checking for intersection
     run(os) {
-      if (!this.hitObstacle && !this.hitTarget) {
+      if (!this.hitObstacle && !this.hitTarget && !this.outOfBounds) {
         this.applyForce(this.dna.genes[this.geneCounter]);
         this.geneCounter = (this.geneCounter + 1) % this.dna.genes.length;
         this.update();
@@ -52,8 +53,17 @@ class Rocket {
         this.obstacles(os);
       }
       // Draw me!
-      if (!this.hitObstacle) {
+      if (!this.hitObstacle && !this.outOfBounds) {
         this.display();
+      }
+    }
+
+    checkBounds(width, height) {
+      if (this.position.x < 0 || this.position.x > width) {
+        this.outOfBounds = true;
+      }
+      if (this.position.y < 0 || this.position.y > height) {
+        this.outOfBounds = true;
       }
     }
   

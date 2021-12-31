@@ -27,6 +27,7 @@ class Population {
       for (let i = 0; i < this.population.length; i++) {
         // If it finishes, mark it down as done!
         this.population[i].checkTarget();
+        this.population[i].checkBounds(1900, 1000);
         this.population[i].run(os);
       }
     }
@@ -49,7 +50,7 @@ class Population {
     getLivingCount() {
       let livingRockets = this.population;
       livingRockets = livingRockets.filter((rocket) => {
-        return rocket.hitObstacle === false;
+        return !(!rocket.hitObstacle === false && rocket.outOfBounds === false || rocket.hitObstacle === false && !rocket.outOfBounds === false);
       })
       return livingRockets.length;
     }
