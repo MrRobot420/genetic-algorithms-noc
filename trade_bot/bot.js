@@ -18,19 +18,20 @@ class Bot {
       this.startCapital = 2000;
       this.currentCapital = this.startCapital;
       this.exceededStartCapital = false;
+      this.broke = false;
     }
   
     // FITNESS FUNCTION
     calcFitness() {
-      if (this.recordDist < 1) this.recordDist = 1;
+      if (this.recordAmount < 100) this.recordAmount = 100;
   
       // Reward finishing faster and getting close
-      this.fitness = (1 / (this.finishTime * this.recordDist));
+      this.fitness = ((this.currentCapital + this.recordAmount) / 2) / this.startCapital;
   
       // Make the function exponential
-      this.fitness = pow(this.fitness, 6);
+      this.fitness = pow(this.fitness, 4);
   
-      if (this.currentCapital <= 0) this.fitness *= 0.1; // lose 90% of fitness hitting an obstacle
+      if (this.broke) this.fitness *= 0.1; // lose 90% of fitness hitting an obstacle
       if (this.exceededStartCapital) this.fitness *= 2; // twice the fitness for finishing!
     }
   
@@ -64,6 +65,7 @@ class Bot {
     checkTarget() {
       if (this.recordAmount < this.currentCapital) this.recordAmount = this.currentCapital;
       if (this.startCapital < this.recordAmount) this.exceededStartCapital = true;
+      if (this.currentCapital <= 0) this.broke = true;
     }
   
     display() {

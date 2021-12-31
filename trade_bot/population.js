@@ -16,19 +16,18 @@ class Population {
       this.generations = 0; // Number of generations
       //make a new set of creatures
       for (let i = 0; i < this.population.length; i++) {
-        let position = createVector(width / 2, height + 20);
-        this.population[i] = new Rocket(position, new DNA(), this.population.length);
+        let position = createVector(width / 2 + 10, height + 20 + (i * 18));
+        this.population[i] = new Bot(position, new DNA());
       }
     }
   
   
-    live(os) {
+    live(course) {
       // For every creature
       for (let i = 0; i < this.population.length; i++) {
         // If it finishes, mark it down as done!
         this.population[i].checkTarget();
-        this.population[i].checkBounds(1900, 1000);
-        this.population[i].run(os);
+        this.population[i].run(course);
       }
     }
   
@@ -48,11 +47,11 @@ class Population {
     }
 
     getLivingCount() {
-      let livingRockets = this.population;
-      livingRockets = livingRockets.filter((rocket) => {
+      let livingBots = this.population;
+      livingBots = livingBots.filter((rocket) => {
         return !(!rocket.hitObstacle === false && rocket.outOfBounds === false || rocket.hitObstacle === false && !rocket.outOfBounds === false);
       })
-      return livingRockets.length;
+      return livingBots.length;
     }
 
     getInitialCount() {
