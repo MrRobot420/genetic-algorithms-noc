@@ -39,7 +39,7 @@ class Rocket {
       this.fitness = pow(this.fitness, 6);
   
       if (this.hitObstacle) this.fitness *= 0.1; // lose 90% of fitness hitting an obstacle
-      if (this.hitTarget) this.fitness *= 2; // twice the fitness for finishing!
+      if (this.hitTarget) this.fitness *= 3; // twice the fitness for finishing!
     }
   
     // Run in relation to all the obstacles
