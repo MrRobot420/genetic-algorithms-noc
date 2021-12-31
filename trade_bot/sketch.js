@@ -19,7 +19,7 @@ let lifetime; // How long should each generation live
 let population; // Population
 
 let lifecycle; // Timer for cycle of generation
-let recordtime; // Fastest time to target
+let recordAmount; // Fastest time to target
 
 let target; // Target position
 
@@ -30,7 +30,7 @@ let obstacles = []; //an array list to keep track of all the obstacles!
 function setup() {
   createCanvas(1900, 950);
   // The number of cycles we will allow a generation to live
-  lifetime = 1000;
+  lifetime = 10;
 
   // Initialize variables
   lifecycle = 0;

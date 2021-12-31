@@ -34,7 +34,7 @@ class Population {
     // Did anything finish?
     targetReached() {
       for (let i = 0; i < this.population.length; i++) {
-        if (this.population[i].hitTarget) return true;
+        if (this.population[i].exceededStartCapital) return true;
       }
       return false;
     }
@@ -97,8 +97,8 @@ class Population {
         // Mutate their genes
         child.mutate(this.mutationRate);
         // Fill the new population with the new child
-        let position = createVector(width / 2, height + 20);
-        this.population[i] = new Rocket(position, child, this.population.length);
+        let position = createVector(width / 2, height + 20 + (i * 18));
+        this.population[i] = new Bot(position, child);
       }
       this.generations++;
     }
