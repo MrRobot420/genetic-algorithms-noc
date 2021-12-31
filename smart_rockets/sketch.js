@@ -30,13 +30,14 @@ let obstacles = []; //an array list to keep track of all the obstacles!
 function setup() {
   createCanvas(1900, 950);
   // The number of cycles we will allow a generation to live
-  lifetime = 600;
+  lifetime = 1200;
 
   // Initialize variables
   lifecycle = 0;
   recordtime = lifetime;
   record = 0;
   recordGeneration = 0;
+  recordPercentage = 0;
 
   target = new Target(width / 2, 78, 78, 200, 230, 200);
 
@@ -55,9 +56,9 @@ function setup() {
 
   // Top ones
   obstacles.push(new Obstacle(width / 4 - 100, height / 3, 200, 10, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 4 + 600, height / 3, 200, 10, 0, 0, 0));
-  obstacles.push(new Obstacle(width / 4 + 400, height / 3, 200, 10, 0, 0, 0));
   obstacles.push(new Obstacle(width / 4 + 200, height / 3, 200, 10, 0, 0, 0));
+  // obstacles.push(new Obstacle(width / 4 + 400, height / 3, 200, 10, 0, 0, 0));
+  obstacles.push(new Obstacle(width / 4 + 600, height / 3, 200, 10, 0, 0, 0));
   
   // Bottom ones
   obstacles.push(new Obstacle(width / 4 - 100, height / 1.5, 200, 10, 0, 0, 0));
@@ -84,8 +85,13 @@ function draw() {
     lifecycle = 0;
     population.calcFitness();
     population.selection();
+    let currentPercentage = (population.getLivingCount() / population.getInitialCount()) * 100
+    if (recordPercentage < currentPercentage && population.targetReached()) {
+      recordPercentage = currentPercentage;
+    }
     record = population.getMaxFitness();
     population.reproduction();
+    
   }
 
   // Draw the obstacles
@@ -98,11 +104,12 @@ function draw() {
   noStroke();
   text("Generation #: " + population.getGenerations(), 10, 18);
   text("Cycles left: " + (lifetime - lifecycle), 10, 36);
-  text("Survivors: " + population.getLivingCount(), 10, 54);
-  text(`Percentage: ${(population.getLivingCount() / population.getInitialCount()) * 100}%`, 10, 72);
+  text("Rockets left: " + population.getLivingCount(), 10, 54);
+  text(`Survival rate: ${(population.getLivingCount() / population.getInitialCount()) * 100} %`, 10, 72);
   text("# # #   RECORD   # # #", 10, 108);
   text("Record cycles: " + recordtime, 10, 126);
   text(`Record Generation: #${recordGeneration}`, 10, 144);
+  text(`Record Survival rate: ${recordPercentage} %`, 10, 162);
 }
 
 // Move the target if the mouse is pressed
