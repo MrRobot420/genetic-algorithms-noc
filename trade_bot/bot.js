@@ -26,7 +26,7 @@ class Bot {
       if (this.recordAmount < 100) this.recordAmount = 100;
   
       // Reward finishing faster and getting close
-      this.fitness = ((this.currentCapital + this.recordAmount) / 2) / this.startCapital;
+      this.fitness = ((this.currentCapital / this.startCapital));
   
       // Make the function exponential
       this.fitness = pow(this.fitness, 4);

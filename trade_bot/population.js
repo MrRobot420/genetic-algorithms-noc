@@ -90,8 +90,6 @@ class Population {
         let mom = this.matingPool[m];
         let dad = this.matingPool[d];
         // Get their genes
-        console.log(this.matingPool.length);
-        console.log(mom);
         let momgenes = mom.getDNA();
         let dadgenes = dad.getDNA();
         // Mate their genes
@@ -100,7 +98,7 @@ class Population {
         child.mutate(this.mutationRate);
         // Fill the new population with the new child
         let position = createVector(width / 2, height + 20 + (i * 18));
-        this.population[i] = new Bot(position, child);
+        this.population[i] = new Bot(position, child, mom.startCapital);
       }
       this.generations++;
     }
