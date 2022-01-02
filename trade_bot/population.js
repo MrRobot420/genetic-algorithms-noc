@@ -17,7 +17,7 @@ class Population {
       this.initialStartCapital = startCapital;
       //make a new set of creatures
       for (let i = 0; i < this.population.length; i++) {
-        let position = createVector(10, (height / 2) + 20 + (i * 18));
+        let position = createVector(10, (height / 4) + (i * 18));
         this.population[i] = new Bot(position, new DNA(), startCapital);
       }
     }
@@ -98,7 +98,7 @@ class Population {
         // Mutate their genes
         child.mutate(this.mutationRate);
         // Fill the new population with the new child
-        let position = createVector(10, height / 2 + 20 + (i * 18));
+        let position = createVector(10, height / 4 + (i * 18));
         this.population[i] = new Bot(position, child, this.initialStartCapital);
       }
       this.generations++;
@@ -123,5 +123,9 @@ class Population {
       let indexOfBestDNA = this.population.findIndex(bot => bot.fitness === record)
       return this.population[indexOfBestDNA].dna.genes
     }
-  
+    
+    getRecordAmount(record) {
+      let indexOfBestDNA = this.population.findIndex(bot => bot.fitness === record)
+      return this.population[indexOfBestDNA].recordAmount
+    }
   }

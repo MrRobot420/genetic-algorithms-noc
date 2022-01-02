@@ -55,6 +55,8 @@ class Bot {
                     this.currentCapital -= course;
                     this.numberOfCoins++;
                     this.lastAction = action;
+                } else {
+                    this.lastAction = 'H'
                 }
                 break;
             case 'S':
@@ -62,6 +64,8 @@ class Bot {
                     this.currentCapital += course;
                     this.lastAction = action;
                     this.numberOfCoins--;
+                }  else {
+                    this.lastAction = 'H'
                 }
                 break;
             case 'H':

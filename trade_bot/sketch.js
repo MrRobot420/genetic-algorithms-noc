@@ -25,6 +25,7 @@ let recordtime;
 let target; // Target position
 let courses;
 let numPts;
+let bestAmount;
 
 //let diam = 24;          // Size of target
 
@@ -35,6 +36,7 @@ function setup() {
   frameRate(10)
 
   courses = [100, 200, 90, 250, 400, 300, 230, 260, 200, 380, 500, 220, 700, 540, 600]
+optimalGenes = ['B', 'B', 'B', 'H', 'S', 'S', 'B', 'H', 'B', 'S', 'S', 'B', 'S', 'S', 'H']
   // The number of cycles we will allow a generation to live
   lifetime = courses.length;
   startCapital = 2000;
@@ -49,14 +51,13 @@ function setup() {
 
   // Create a population with a mutation rate, and population max
   let mutationRate = 0.01;
-  population = new Population(mutationRate, 20, startCapital);
+  population = new Population(mutationRate, 40, startCapital);
 
   numPts = courses.length;
 }
 
 function draw() {
   background(27, 30, 65);
-  let indexOfBestDNA = 0;
 
   // If the generation hasn't ended yet
   if (lifecycle < lifetime) {
@@ -78,6 +79,7 @@ function draw() {
     }
     record = population.getMaxFitness();
     bestGenes = population.getBestGenes(record);
+    bestAmount = population.getRecordAmount(record)
     console.log(bestGenes);
     population.reproduction();
   }
@@ -88,9 +90,9 @@ function draw() {
   textStyle(BOLD);
   text("Generation #: " + population.getGenerations(), 10, 18);
   text("Cycles left: " + (lifetime - lifecycle), 10, 36);
-  text("Bots left: " + population.getLivingCount(), 10, 54);
-  text(`Survival rate: ${(population.getLivingCount() / population.getInitialCount()) * 100} %`, 10, 72);
+  text("Bots: " + population.getLivingCount(), 10, 54);
   text('Best DNA: ' + bestGenes, 10, 90)
+  text(`Best Capital: ${bestAmount} €`, 10, 108)
 
   drawLines();
   drawEllipses();
@@ -98,22 +100,24 @@ function draw() {
 
 function drawEllipses(){
   noStroke();
+  let offset = 800;
     // draw ellipses
   for(let i = 0; i < courses.length; i++){
     let x = i * ((width - 500) / (numPts-1)) + 400;
-    let y = courses[i];
+    let y = offset - courses[i];
     ellipse(x, y, 7);
   }
 }
 
 function drawLines(){
   stroke(250);
+  let offset = 800
  // draw lines
   let px = 400;
-  let py = courses[0];
+  let py = offset;
   for(let i =0; i < courses.length; i++){
     let x = i * ((width - 500) / (numPts-1)) + 400;
-    let y = courses[i];
+    let y = offset - courses[i];
     line(px, py, x, y);
     
   	//store the last position
