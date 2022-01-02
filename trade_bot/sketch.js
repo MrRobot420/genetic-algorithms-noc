@@ -24,6 +24,7 @@ let recordtime;
 
 let target; // Target position
 let courses;
+let numPts;
 
 //let diam = 24;          // Size of target
 
@@ -49,6 +50,8 @@ function setup() {
   // Create a population with a mutation rate, and population max
   let mutationRate = 0.01;
   population = new Population(mutationRate, 20, startCapital);
+
+  numPts = courses.length;
 }
 
 function draw() {
@@ -88,4 +91,33 @@ function draw() {
   text("Bots left: " + population.getLivingCount(), 10, 54);
   text(`Survival rate: ${(population.getLivingCount() / population.getInitialCount()) * 100} %`, 10, 72);
   text('Best DNA: ' + bestGenes, 10, 90)
+
+  drawLines();
+  drawEllipses();
+}
+
+function drawEllipses(){
+  noStroke();
+    // draw ellipses
+  for(let i = 0; i < courses.length; i++){
+    let x = i * ((width - 500) / (numPts-1)) + 400;
+    let y = courses[i];
+    ellipse(x, y, 7);
+  }
+}
+
+function drawLines(){
+  stroke(250);
+ // draw lines
+  let px = 400;
+  let py = courses[0];
+  for(let i =0; i < courses.length; i++){
+    let x = i * ((width - 500) / (numPts-1)) + 400;
+    let y = courses[i];
+    line(px, py, x, y);
+    
+  	//store the last position
+    px = x;
+    py = y;
+  } 
 }
