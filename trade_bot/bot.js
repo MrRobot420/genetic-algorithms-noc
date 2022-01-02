@@ -20,6 +20,7 @@ class Bot {
       this.exceededStartCapital = false;
       this.broke = false;
       this.lastAction = '';
+      this.numberOfCoins = 0;
     }
   
     // FITNESS FUNCTION
@@ -48,17 +49,23 @@ class Bot {
     }
 
     executeAction(action, course) {
-        this.lastAction = action;
         switch (action) {
             case 'B':
                 if (this.currentCapital >= course) {
                     this.currentCapital -= course;
+                    this.numberOfCoins++;
+                    this.lastAction = action;
                 }
                 break;
             case 'S':
-                this.currentCapital += course;
+                if (this.numberOfCoins >= 1) {
+                    this.currentCapital += course;
+                    this.lastAction = action;
+                    this.numberOfCoins--;
+                }
                 break;
             case 'H':
+                this.lastAction = action;
                 break;
         }
     }
