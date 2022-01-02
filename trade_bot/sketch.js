@@ -31,6 +31,7 @@ let obstacles = []; //an array list to keep track of all the obstacles!
 
 function setup() {
   createCanvas(1900, 950);
+  frameRate(1)
 
   courses = [100, 200, 90, 250, 400, 300, 230, 260, 200, 380, 500, 220, 700, 540, 600]
   // The number of cycles we will allow a generation to live
@@ -51,7 +52,6 @@ function setup() {
 
 function draw() {
   background(27, 30, 65);
-
 
   // If the generation hasn't ended yet
   if (lifecycle < lifetime) {
@@ -82,10 +82,6 @@ function draw() {
   textStyle(BOLD);
   text("Generation #: " + population.getGenerations(), 10, 18);
   text("Cycles left: " + (lifetime - lifecycle), 10, 36);
-  text("Rockets left: " + population.getLivingCount(), 10, 54);
+  text("Bots left: " + population.getLivingCount(), 10, 54);
   text(`Survival rate: ${(population.getLivingCount() / population.getInitialCount()) * 100} %`, 10, 72);
-  text("# # #   RECORD   # # #", 10, 108);
-  text("Record cycles: " + recordtime, 10, 126);
-  text(`Record Generation: #${recordGeneration}`, 10, 144);
-  text(`Record Survival rate: ${recordPercentage} %`, 10, 162);
 }

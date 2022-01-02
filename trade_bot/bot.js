@@ -19,6 +19,7 @@ class Bot {
       this.currentCapital = this.startCapital;
       this.exceededStartCapital = false;
       this.broke = false;
+      this.lastAction = '';
     }
   
     // FITNESS FUNCTION
@@ -47,6 +48,7 @@ class Bot {
     }
 
     executeAction(action, course) {
+        this.lastAction = action;
         switch (action) {
             case 'B':
                 if (this.currentCapital >= course) {
@@ -69,7 +71,8 @@ class Bot {
     }
   
     display() {
-      text(`Captial: ${this.currentCapital} €, Last Action: ${this.currentCapital}`, this.position.x, this.position.y);
+      console.log(this.position);
+      text(`Captial: ${this.currentCapital} €, Last Action: ${this.lastAction}`, this.position.x, this.position.y);
     }
   
     getFitness() {

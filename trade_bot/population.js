@@ -16,7 +16,7 @@ class Population {
       this.generations = 0; // Number of generations
       //make a new set of creatures
       for (let i = 0; i < this.population.length; i++) {
-        let position = createVector(width / 2 + 10, height + 20 + (i * 18));
+        let position = createVector(10, (height / 2) + 20 + (i * 18));
         this.population[i] = new Bot(position, new DNA(), startCapital);
       }
     }
@@ -48,8 +48,8 @@ class Population {
 
     getLivingCount() {
       let livingBots = this.population;
-      livingBots = livingBots.filter((rocket) => {
-        return !(!rocket.hitObstacle === false && rocket.outOfBounds === false || rocket.hitObstacle === false && !rocket.outOfBounds === false);
+      livingBots = livingBots.filter((bot) => {
+        return (!bot.broke);
       })
       return livingBots.length;
     }
@@ -97,7 +97,7 @@ class Population {
         // Mutate their genes
         child.mutate(this.mutationRate);
         // Fill the new population with the new child
-        let position = createVector(width / 2, height + 20 + (i * 18));
+        let position = createVector(10, height / 2 + 20 + (i * 18));
         this.population[i] = new Bot(position, child, mom.startCapital);
       }
       this.generations++;
