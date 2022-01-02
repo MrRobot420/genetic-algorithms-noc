@@ -31,7 +31,7 @@ let obstacles = []; //an array list to keep track of all the obstacles!
 
 function setup() {
   createCanvas(1900, 950);
-  frameRate(1)
+  frameRate(10)
 
   courses = [100, 200, 90, 250, 400, 300, 230, 260, 200, 380, 500, 220, 700, 540, 600]
   // The number of cycles we will allow a generation to live
@@ -44,6 +44,7 @@ function setup() {
   record = 0;
   recordGeneration = 0;
   recordPercentage = 0;
+  bestGenes = [];
 
   // Create a population with a mutation rate, and population max
   let mutationRate = 0.01;
@@ -52,6 +53,7 @@ function setup() {
 
 function draw() {
   background(27, 30, 65);
+  let indexOfBestDNA = 0;
 
   // If the generation hasn't ended yet
   if (lifecycle < lifetime) {
@@ -72,8 +74,9 @@ function draw() {
       recordPercentage = currentPercentage;
     }
     record = population.getMaxFitness();
+    bestGenes = population.getBestGenes(record);
+    console.log(bestGenes);
     population.reproduction();
-    
   }
 
   // Display some info
@@ -84,4 +87,5 @@ function draw() {
   text("Cycles left: " + (lifetime - lifecycle), 10, 36);
   text("Bots left: " + population.getLivingCount(), 10, 54);
   text(`Survival rate: ${(population.getLivingCount() / population.getInitialCount()) * 100} %`, 10, 72);
+  text('Best DNA: ' + bestGenes, 10, 90)
 }

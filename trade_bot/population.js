@@ -14,6 +14,7 @@ class Population {
       this.population = new Array(num); // Array to hold the current population
       this.matingPool = []; // ArrayList which we will use for our "mating pool"
       this.generations = 0; // Number of generations
+      this.initialStartCapital = startCapital;
       //make a new set of creatures
       for (let i = 0; i < this.population.length; i++) {
         let position = createVector(10, (height / 2) + 20 + (i * 18));
@@ -98,7 +99,7 @@ class Population {
         child.mutate(this.mutationRate);
         // Fill the new population with the new child
         let position = createVector(10, height / 2 + 20 + (i * 18));
-        this.population[i] = new Bot(position, child, mom.startCapital);
+        this.population[i] = new Bot(position, child, this.initialStartCapital);
       }
       this.generations++;
     }
@@ -116,6 +117,11 @@ class Population {
         }
       }
       return record;
+    }
+
+    getBestGenes(record) {
+      let indexOfBestDNA = this.population.findIndex(bot => bot.fitness === record)
+      return this.population[indexOfBestDNA].dna.genes
     }
   
   }

@@ -71,7 +71,6 @@ class Bot {
     }
   
     display() {
-      console.log(this.position);
       text(`Captial: ${this.currentCapital} €, Last Action: ${this.lastAction}`, this.position.x, this.position.y);
     }
   
